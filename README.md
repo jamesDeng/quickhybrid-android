@@ -1,2 +1,0 @@
-# quickhybrid-android
-混合开发框架quickhybrid的android版本
