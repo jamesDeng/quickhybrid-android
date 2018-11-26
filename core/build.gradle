@@ -1,0 +1,60 @@
+apply plugin: 'com.android.library'
+//apply plugin: 'maven'  // 添加maven插件
+
+android {
+    compileSdkVersion 28
+
+
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+
+android {
+    useLibrary 'org.apache.http.legacy'
+}
+
+dependencies {
+    //implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':jsbridge')
+}
+//
+//buildscript {
+//    tasks.withType(JavaCompile) {
+//        sourceCompatibility = JavaVersion.VERSION_1_8
+//        targetCompatibility = JavaVersion.VERSION_1_8
+//    }
+//}
+//
+//uploadArchives {
+//    repositories {
+//        mavenDeployer {
+//            snapshotRepository(url: "http://mvn.thinker.vc/content/repositories/snapshots/") {
+//                authentication(userName: "admin", password: "@thinker.vc")
+//            }
+//            repository(url: "http://mvn.thinker.vc/content/repositories/releases/") {
+//                authentication(userName: "admin", password: "@thinker.vc")
+//            }
+//            pom.groupId = "vc.thinker.android"
+//            pom.artifactId = 'hybrid-core'
+//            pom.version = "1.0.0"
+//            pom.packaging = "aar"
+//        }
+//    }
+//}

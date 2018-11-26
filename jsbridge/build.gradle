@@ -1,0 +1,80 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven'  // 添加maven插件
+
+
+android {
+    compileSdkVersion 28
+
+
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+
+    compile 'com.android.support:appcompat-v7:28.0.0'
+    compile 'com.android.support:support-v4:28.0.0'
+    compile 'com.android.support:design:28.0.0'
+    compile 'com.android.support:recyclerview-v7:28.0.0'
+    compile 'com.android.support.constraint:constraint-layout:1.1.0'
+    compile 'com.jakewharton:butterknife:8.6.0'
+    compile 'com.google.code.gson:gson:2.8.2'
+    compile 'com.journeyapps:zxing-android-embedded:3.5.0'
+    compile 'com.liulishuo.filedownloader:library:1.5.5'
+
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    compile 'me.iwf.photopicker:PhotoPicker:0.9.10@aar'
+    compile 'com.github.bumptech.glide:glide:4.1.1'
+}
+
+
+android {
+    useLibrary 'org.apache.http.legacy'
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+}
+
+buildscript {
+    tasks.withType(JavaCompile) {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            snapshotRepository(url: "http://mvn.thinker.vc/content/repositories/snapshots/") {
+                authentication(userName: "admin", password: "@thinker.vc")
+            }
+            repository(url: "http://mvn.thinker.vc/content/repositories/releases/") {
+                authentication(userName: "admin", password: "@thinker.vc")
+            }
+            pom.groupId = "vc.thinker.android"
+            pom.artifactId = 'hybrid-jsbridge'
+            pom.version = "1.0.0"
+            pom.packaging = "aar"
+        }
+    }
+}
